@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Smartphonev3.Models.ThanhToan>
+
+@{
+    ViewBag.Title = "Danh sách Thanh Toán";
+}
+
+<h2>Danh sách Thanh Toán</h2>
+
+@if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+{
+    <p>Hiển thị tất cả thông tin thanh toán.</p>
+}
+else
+{
+    <p>Hiển thị thông tin thanh toán của bạn.</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.phuong_thuc_thanh_toan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trang_thai_thanh_toan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_thanh_toan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonHang.trang_thai_don_hang)
+        </th>
+        <!-- Cột mới để hiển thị tổng tiền -->
+        <th>Tổng Tiền</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.phuong_thuc_thanh_toan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trang_thai_thanh_toan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay_thanh_toan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.trang_thai_don_hang)
+            </td>
+            <!-- Hiển thị tổng tiền cho đơn hàng -->
+            <td>
+                @item.TongTien.ToString("C") <!-- Định dạng số thành tiền -->
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.thanh_toan_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.thanh_toan_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.thanh_toan_id })
+            </td>
+        </tr>
+    }
+</table>

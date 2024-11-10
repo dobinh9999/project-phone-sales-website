@@ -1,0 +1,120 @@
+﻿/* Định dạng chung cho toàn bộ trang */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    border-radius: 20px; /* Bo tròn góc viền */
+    padding: 20px; /* Tạo khoảng đệm giữa nội dung và viền */
+    margin-bottom: 20px; /* Khoảng cách phía dưới để cách nhau với phần khác */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tùy chọn: thêm bóng cho viền */
+    transition: transform 0.2s ease; /* Hiệu ứng chuyển động cho transform */
+}
+
+    .row:hover {
+        transform: scale(1.02); /* Phóng to nhẹ khi hover */
+    }
+
+
+    .row h2 {
+        text-align: left;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #19f7f0;
+    }
+
+
+
+
+    /*ẩn sản phẩm và hiển thị 5 sản phẩm */
+
+/* Thẻ chứa sản phẩm */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #343a40;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Hiển thị tối đa 3 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Hiển thị tối đa 3 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-group .btn {
+    font-size: 0.875rem;
+}
+
+.price {
+    font-size: 1.1rem;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.stock-status {
+    font-size: 0.9rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Định dạng lưới sản phẩm */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-4 {
+    flex: 0 0 31%;
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 48%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+    }
+}
+
+
+

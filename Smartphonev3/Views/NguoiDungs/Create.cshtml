@@ -1,0 +1,67 @@
+﻿@model Smartphonev3.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+}
+
+<link rel="stylesheet" href="~/Content/NguoiDungCSS/Dangky.css" />
+
+<h2>Đăng ký tài khoản</h2>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="registration-form">
+        <h4>Thông tin tài khoản</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ten_dang_nhap, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ten_dang_nhap, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ten_dang_nhap, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email_sdt, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.email_sdt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.email_sdt, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
+            @Html.PasswordFor(model => model.mat_khau, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Trường ẩn cho vai trò mặc định là "Khach Hang" -->
+        @Html.HiddenFor(model => model.vai_tro, new { Value = "Khach Hang" })
+
+        <!-- Trường ẩn cho ngày tạo và ngày cập nhật -->
+        @Html.HiddenFor(model => model.ngay_tao, new { Value = DateTime.Now })
+        @Html.HiddenFor(model => model.ngay_cap_nhat, new { Value = DateTime.Now })
+
+        <div class="form-group">
+            <input type="submit" value="Đăng ký" class="btn btn-primary btn-block" />
+        </div>
+    </div>
+}
+
+<div class="back-link">
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-link" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

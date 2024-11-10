@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Smartphonev3.Models.NguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+    {
+        // Hiển thị tiêu đề nếu là Admin
+        @:Danh Sách Tài Khoản Người Dùng
+    }
+    else
+            {
+                @:Tài hoản người dùng
+            }
+</h2>
+
+<p>
+    @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_dang_nhap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mat_khau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email_sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vai_tro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_tao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_cap_nhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThongTinNguoiDung.ten_day_du)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten_dang_nhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mat_khau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email_sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vai_tro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngay_tao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngay_cap_nhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThongTinNguoiDung.ten_day_du)
+        </td>
+        <td>
+            @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.nguoi_dung_id })<br />
+                @Html.ActionLink("Details", "Details", new { id = item.nguoi_dung_id })<br />
+                @Html.ActionLink("Delete", "Delete", new { id = item.nguoi_dung_id })
+            }
+            else
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.nguoi_dung_id })<br />
+                @Html.ActionLink("Details", "Details", new { id = item.nguoi_dung_id })
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

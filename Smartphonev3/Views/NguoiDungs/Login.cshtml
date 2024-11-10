@@ -1,0 +1,48 @@
+﻿@model Smartphonev3.Models.NguoiDung
+@{
+    ViewBag.Title = "Đăng Nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <!-- Tùy chỉnh nhãn cho tên đăng nhập -->
+        <label for="ten_dang_nhap" class="control-label">Tên đăng nhập, Email hoặc Số điện thoại</label>
+        <input type="text" name="ten_dang_nhap" class="form-control" placeholder="Tên đăng nhập, Email hoặc Số điện thoại" />
+    </div>
+
+    <div class="form-group">
+        <!-- Tùy chỉnh nhãn cho mật khẩu -->
+        <label for="mat_khau" class="control-label">Mật khẩu</label>
+        @Html.PasswordFor(model => model.mat_khau, new { @class = "form-control" })
+    </div>
+
+    if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+}
+
+<p>
+    <a href="@Url.Action("ForgotPassword", "NguoiDungs")">Quên mật khẩu?</a>
+</p>
+
+<p>
+    Chưa có tài khoản? <a href="@Url.Action("Create", "NguoiDungs")">Đăng ký ngay</a>
+</p>
+
+@* Kiểm tra nếu có thông báo thành công và hiển thị bằng alert *@
+@if (ViewBag.SuccessMessage != null)
+{
+    <script type="text/javascript">
+        alert('@ViewBag.SuccessMessage');
+    </script>
+}

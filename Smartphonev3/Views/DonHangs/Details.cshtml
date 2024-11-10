@@ -1,0 +1,58 @@
+﻿@model Smartphonev3.Models.DonHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.trang_thai_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trang_thai_don_hang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao_don_hang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_cap_nhat_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_cap_nhat_don_hang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.ten_dang_nhap)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.don_hang_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

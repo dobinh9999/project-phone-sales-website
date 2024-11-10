@@ -1,0 +1,84 @@
+﻿@model Smartphonev3.Models.ThanhToan
+
+@{
+    ViewBag.Title = "Create Payment";
+}
+
+<h2>Create Payment</h2>
+
+@using (Html.BeginForm("Create", "ThanhToans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.phuong_thuc_thanh_toan)
+        @Html.DropDownListFor(model => model.phuong_thuc_thanh_toan, new SelectList(new List<string> { "Cash on Delivery", "transfer", "Card" }), "Select Payment Method", new { @class = "form-control", id = "phuongThucThanhToan" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trang_thai_thanh_toan)
+        @Html.DropDownListFor(model => model.trang_thai_thanh_toan, new SelectList(new List<string> { "Payment Completed", "Unpaid" }), "Select Payment Status", new { @class = "form-control", id = "trangThaiThanhToan", disabled = "disabled" })
+    </div>
+
+    <!-- Hiển thị tổng tiền cần thanh toán -->
+    <div class="form-group">
+        <label>Tổng Tiền Cần Thanh Toán</label>
+        <input type="text" class="form-control" value="@ViewBag.TongTien" disabled />
+    </div>
+
+    <!-- Hidden field to pass the don_hang_id -->
+    @Html.HiddenFor(model => model.don_hang_id)
+
+    <button type="button" class="btn btn-primary" id="chonDiaChiNhanHang">Chọn địa chỉ nhận hàng</button>
+
+    <button type="submit" class="btn btn-primary">Thanh Toán</button>
+
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        // Lắng nghe sự thay đổi của phương thức thanh toán và tự động cập nhật trạng thái thanh toán
+        document.getElementById("phuongThucThanhToan").addEventListener("change", function () {
+            var phuongThuc = this.value;
+            var trangThaiThanhToan = document.getElementById("trangThaiThanhToan");
+
+            if (phuongThuc === "Cash on Delivery") {
+                trangThaiThanhToan.value = "Unpaid"; // Nếu là Tiền Mặt, trạng thái thanh toán là "Chưa Thanh Toán"
+            } else {
+                trangThaiThanhToan.value = "Payment Completed"; // Các phương thức khác sẽ là "Đã Thanh Toán"
+            }
+        });
+
+
+         var isPaymentCompleted = false;
+
+    // Bỏ qua cảnh báo nếu người dùng đã thanh toán xong
+    $("form").on("submit", function () {
+        isPaymentCompleted = true;
+    });
+
+    // Xử lý khi người dùng cố gắng thoát khỏi trang mà chưa thanh toán
+    window.onbeforeunload = function () {
+        if (!isPaymentCompleted) {
+            // Gửi yêu cầu AJAX để tạo bản ghi thanh toán chưa hoàn thành
+            $.ajax({
+                url: '@Url.Action("CreateUnpaidRecord", "ThanhToan")', // Gọi đến action mới
+                type: 'POST',
+                data: {
+                    donHangId: $('#don_hang_id').val(),
+                    phuongThuc: $('#phuong_thuc_thanh_toan').val()
+                },
+                async: false
+            });
+
+            return "Bạn chưa hoàn tất thủ tục thanh toán. Bạn có chắc chắn muốn rời khỏi trang?";
+        }
+        };
+
+        document.getElementById("chonDiaChiNhanHang").addEventListener("click", function () {
+         window.location.href = '@Url.Action("Index", "ThongTinNguoiDungs")';
+});
+
+
+    </script>
+}

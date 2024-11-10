@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce4741c65bbd43f78d806bf76cbce4d1" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.DanhGia" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.DanhMuc" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.DonHang" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.GioHang" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.NguoiDung" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.SanPham" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.sysdiagram" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.ThanhToan" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.ThongBao" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartphoneModelv3_1.ThongTinNguoiDung" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__ChiTietDo__don_h__7C1A6C5A" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__ChiTietDo__san_p__7D0E9093" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__DanhGia__khach_h__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__DanhGia__san_pha__078C1F06" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__SanPham__danh_mu__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__DonHang__khach_h__793DFFAF" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__ThanhToan__don_h__02C769E9" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__GioHang__khach_h__0B5CAFEA" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__GioHang__san_pha__0C50D423" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__ThongBao__nguoi___11158940" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartphoneModelv3_1.FK__ThongTinN__nguoi__6EC0713C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

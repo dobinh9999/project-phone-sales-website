@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Smartphonev3.Models.DanhMuc>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_danh_muc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mo_ta_danh_muc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ten_danh_muc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mo_ta_danh_muc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.danh_muc_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.danh_muc_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.danh_muc_id })
+        </td>
+    </tr>
+}
+
+</table>

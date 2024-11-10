@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Smartphonev3.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.so_luong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonHang.trang_thai_don_hang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.ten_san_pham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonHang.NguoiDung.ThongTinNguoiDung.dia_chi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.so_luong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.trang_thai_don_hang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.ten_san_pham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.NguoiDung.ThongTinNguoiDung.dia_chi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.chi_tiet_don_hang_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.chi_tiet_don_hang_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.chi_tiet_don_hang_id })
+            </td>
+        </tr>
+    }
+</table>

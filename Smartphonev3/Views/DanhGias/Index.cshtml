@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Smartphonev3.Models.DanhGia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.so_sao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.binh_luan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_tao_danh_gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.ten_san_pham)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.so_sao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.binh_luan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngay_tao_danh_gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.ten_dang_nhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SanPham.ten_san_pham)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.danh_gia_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.danh_gia_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.danh_gia_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model Smartphonev3.Models.GioHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GioHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luong_san_pham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luong_san_pham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.ten_dang_nhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.ten_san_pham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.ten_san_pham)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.gio_hang_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

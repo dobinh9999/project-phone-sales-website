@@ -1,0 +1,29 @@
+﻿.navbar {
+    background-color: transparent !important; /* Nền thanh điều hướng trong suốt */
+    box-shadow: none; /* Loại bỏ viền nếu có */
+}
+
+.navbar-nav {
+    display: flex; /* Sắp xếp các thẻ li theo chiều ngang */
+    justify-content: space-around; /* Giữ khoảng cách đều giữa các thẻ */
+    width: 100%; /* Trải rộng toàn bộ chiều ngang thanh điều hướng */
+}
+
+    .navbar-nav .nav-link {
+        text-decoration: none; /* Loại bỏ gạch chân */
+        color: white; /* Chữ màu trắng để nổi bật trên nền trong suốt */
+        padding: 10px 20px; /* Tạo khối cho các mục */
+        margin-right: 10px; /* Tạo khoảng cách giữa các thẻ */
+        background-color: rgba(255, 255, 255, 0.2); /* Nền mờ cho các thẻ li */
+        border-radius: 5px; /* Bo tròn các góc của khối */
+        transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+    }
+
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.4); /* Tăng độ mờ khi hover */
+        }
+
+.navbar-brand {
+    color: blue; /* Chữ logo màu trắng */
+    font-weight: bold; /* Đậm chữ cho nổi bật */
+}

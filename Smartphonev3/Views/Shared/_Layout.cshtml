@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    <!--MENU UL LI-->
+    <style>
+        /* CSS cho Navbar */
+        nav {
+            position: fixed;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Đảm bảo nav ở trên cùng các phần tử khác */
+            background-color: white; /* Màu nền cho nav */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng cho nav */
+        }
+
+        .navbar {
+            background-color: white; /* Màu nền tối */
+            padding: 10px;
+        }
+
+        .navbar-brand {
+            color: #999; /* Màu chữ trắng */
+            padding: 10px 15px;
+            text-decoration: none; /* Bỏ gạch chân */
+            transition: all 0.5s ease; /* Hiệu ứng mượt */
+        }
+
+            .navbar-brand:hover {
+                font-size: 22px;
+                text-decoration-thickness: 4px;
+            }
+
+        .navbar-nav {
+            list-style-type: none; /* Bỏ dấu chấm */
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #999; /* Màu chữ trắng */
+            padding: 10px 15px;
+            text-decoration: none; /* Bỏ gạch chân */
+            transition: all 0.5s ease; /* Hiệu ứng mượt */
+        }
+
+            .nav-link:hover {
+                font-size: 18px;
+                text-underline-offset: 5px; /* Khoảng cách gạch chân xuống dưới */
+                text-decoration: underline; /* Thêm gạch chân khi hover */
+                text-decoration-color: blue; /* Màu gạch chân là màu xanh dương */
+                text-decoration-thickness: 4px; /* Độ đậm của gạch chân */
+                color: #0056b3; /* Màu sắc khi di chuột qua */
+            }
+        /* CSS cho Dropdown */
+        .dropdown {
+            position: relative; /* Để cho sub-menu có thể được định vị */
+        }
+
+        .dropdown-menu {
+            display: none; /* Ẩn menu con */
+            position: absolute; /* Định vị tuyệt đối */
+            background-color: white; /* Màu nền trắng */
+            border: 1px solid #50c7c7; /* Viền */
+            z-index: 1; /* Đảm bảo nằm trên các thành phần khác */
+        }
+
+            .dropdown-menu a {
+                color: black; /* Màu chữ đen */
+                padding: 10px;
+                text-decoration: none; /* Bỏ gạch chân */
+                display: block; /* Để các item có chiều rộng đầy đủ */
+                border: 1px solid #50c7c7;
+            }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Hiện dropdown khi hover */
+        }
+
+        .dropdown-item:hover {
+            font-size: 18px;
+        }
+
+        .nav-item-logout {
+            margin-left: auto; /* Tự động căn chỉnh sang bên phải */
+        }
+
+        .nav-item-login {
+            margin-left: auto; /* Tự động căn chỉnh sang bên phải */
+        }
+
+        /* sncjnc*/
+        /* Container chính */
+        .container.body-content {
+            flex: 1; /* Cho phép nội dung chính chiếm toàn bộ chiều cao còn lại */
+            padding-bottom: 50px; /* Thêm khoảng cách dưới để không bị đè lên footer */
+        }
+        /*------------------------------------------------------------*/
+        .navbar-navlogin {
+            display: flex; /* Sử dụng flexbox để dễ dàng căn chỉnh */
+            justify-content: flex-end; /* Căn chỉnh các mục đến bên phải */
+        }
+
+        .nav-itemlogin {
+            margin-left: 60px; /* Tạo khoảng cách giữa các mục */
+        }
+
+        /* footer*/
+        footer {
+            color: #999;
+            padding: 20px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 10px;
+        }
+
+            .footer-section h4 {
+                color: #808080ff;
+                font-weight: bold;
+            }
+
+            .footer-section ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .footer-section ul li a {
+                    color: #999;
+                    text-decoration: none;
+                }
+
+                    .footer-section ul li a:hover {
+                        color: blue;
+                    }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+        }
+
+        /* css hiển thị chỉ số giỏ hàng*/
+        /* Style for the cart item count */
+        .cart-count {
+            background-color: #f2ecab;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            margin-left: 5px;
+            vertical-align: top;
+            display: inline-block;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .navbar-navlogin a {
+            display: flex;
+            align-items: center;
+            color: #999; /* Màu cho icon và text */
+            text-decoration: none;
+            
+        }
+
+        .navbar-navlogin i.bi-cart3 {
+            font-size: 1.2rem; /* Kích thước icon */
+            color: #ff6b6b; /* Màu cho icon giỏ hàng */
+            margin-right: 2px; /* Khoảng cách giữa icon và text */
+            position: relative;
+        }
+
+        .navbar-navlogin .cart-count {
+            font-size: 0.9rem;
+            color: #999; /* Màu cho chữ Giỏ Hàng */
+            transition:all 0.5 ease;
+        }
+
+        .navbar-navlogin a:hover i.bi-cart3,
+        .navbar-navlogin a:hover .cart-count {
+            color: #0056b3; /* Màu thay đổi khi hover */
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-navbar bg-transparent">
+        <div class="container">
+            @Html.ActionLink("Demo website bán Smartphone của Bình 💕", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Trang Chủ", "Index", "Sanphams", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Giới Thiệu", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Liên Hệ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <!-- Mục Sản phẩm với submenu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Danh Sách
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "SanPhams")">Sản phẩm</a></li>
+                            <li>
+                                @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                                {
+                                    <!-- Nếu là Admin, hiển thị link tới giỏ hàng của tất cả người dùng -->
+                                    <a class="dropdown-item" href="@Url.Action("Index", "GioHangs")">Giỏ Hàng (All)</a>
+                                }
+                                else
+                                {
+                                    <!-- Nếu là người dùng thông thường, hiển thị link tới giỏ hàng của riêng họ -->
+                                    <a class="dropdown-item" href="@Url.Action("Index", "GioHangs", new { khach_hang_id = Session["NguoiDungId"] })">Giỏ Hàng của tôi @ViewBag.SoLuongSanPham</a>
+                                }
+                            </li>
+                            @if (Session["NguoiDungId"] != null) // Kiểm tra nếu người dùng đã đăng nhập
+                            {
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "DonHangs")">Đơn Hàng</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "ChiTietDonHangs")">Chi tiết đơn Hàng</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "DanhMucs")">Danh mục hàng</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "ThanhToans")">Thanh toán</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "DanhGias")">Đánh giá</a></li>
+                            }
+                        </ul>
+                    </li>
+
+                    <!-- Mục Người dùng với submenu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tài Khoản
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+                            <li>
+                                @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                                {
+                                    <!-- Nếu Role là Admin, vào form Index của Admin -->
+                                    <a class="dropdown-item" href="@Url.Action("Index", "NguoiDungs")">Tài khoản người dùng</a>
+                                }
+                                else
+                                {
+                                    <!-- Nếu không phải Admin, vào trang tài khoản của người dùng theo id -->
+                                    <a class="dropdown-item" href="@Url.Action("Index", "NguoiDungs", new { id = Session["NguoiDungId"] })">Tài khoản của tôi</a>
+                                }
+                            </li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "ThongTinNguoiDungs")">Thông tin người dùng</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "ThongBaos")">Thông báo</a></li>
+                        </ul>
+
+                    </li>
+                    <ul class="navbar-navlogin">
+                        <li class="navbar-navlogin">
+                            @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                            {
+                                <a class="dropdown-item" href="@Url.Action("Index", "GioHangs")"> 🛒 (All)</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item" href="@Url.Action("Index", "GioHangs", new { khach_hang_id = Session["NguoiDungId"] })">
+                                    <span class="cart-count">Giỏ Hàng</span><i>🛒</i>
+                                </a>
+                            }
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-navlogin">
+                        @if (Session["Username"] != null)
+                        {
+                            <li class="nav-itemlogin">
+                                <!-- Liên kết đến trang Thông Tin Người Dùng -->
+                                @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                                {
+                                    <!-- Nếu là admin, hiển thị tất cả người dùng -->
+                                    @Html.ActionLink("Admin|View All Users", "Index1", "ThongTinNguoiDungs", new { area = "" }, new { @class = "nav-link" })
+                                }
+                                else
+                                {
+                                    <!-- Nếu không phải admin, hiển thị thông tin cá nhân của người dùng -->
+                                    @Html.ActionLink(@Session["Username"].ToString(), "Index", "ThongTinNguoiDungs", new { id = Session["NguoiDungId"] }, new { @class = "nav-link" })
+                                }
+                            </li>
+                            <li class="nav-itemlogin">
+                                @Html.ActionLink("Logout", "Logout", "NguoiDungs", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-itemlogin">
+                                @Html.ActionLink("Login", "Login", "NguoiDungs", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-itemlogin">
+                                @Html.ActionLink("Register", "Create", "NguoiDungs", new { area = "" }, new { @class = "nav-link" }) <!-- Thêm chức năng đăng ký -->
+                            </li>
+                        }
+                    </ul>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container body-content">
+        @RenderBody()
+
+        <hr />
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h4>Thông Tin Cửa Hàng</h4>
+                    <p>Chúng tôi chuyên cung cấp các sản phẩm công nghệ như điện thoại, phụ kiện điện thoại, laptop, máy tính, tai nghe và các thiết bị di động khác. Đảm bảo chất lượng và giá cả hợp lý.</p>
+                </div>
+                <div class="footer-section links">
+                    <h4>Sản Phẩm</h4>
+                    <ul>
+                        <li><a href="#">Điện Thoại</a></li>
+                        <li><a href="#">Phụ Kiện Điện Thoại</a></li>
+                        <li><a href="#">Laptop & Máy Tính</a></li>
+                        <li><a href="#">Tai Nghe</a></li>
+                        <li><a href="#">Thiết Bị Di Động</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h4>Liên Hệ</h4>
+                    <p>Địa chỉ: 123 Đường ABC, Quận X, TP. Y</p>
+                    <p>Số điện thoại: 0123 456 789</p>
+                    <p>Email: support@cuahangcongnghe.com</p>
+                </div>
+                <div class="footer-section social">
+                    <h4>Theo Dõi Chúng Tôi</h4>
+                    <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year - Cửa Hàng Công Nghệ. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+    $(document).ready(function () {
+        // Gọi AJAX để lấy số lượng sản phẩm trong giỏ hàng
+        $.ajax({
+            url: '@Url.Action("GetCartItemCount", "GioHangs")',
+            type: 'GET',
+            success: function (soLuongSanPham) {
+                // Hiển thị số lượng sản phẩm vào vị trí mong muốn
+                $(".cart-count").text(soLuongSanPham);
+            },
+            error: function () {
+                console.log("Lỗi khi tải số lượng sản phẩm.");
+            }
+        });
+    });
+    </script>
+    <!-- menu-->
+    <script src="@Url.Content("~/Content/js/menu.js")"></script>
+    <!-- -->
+</body>
+</html>
+

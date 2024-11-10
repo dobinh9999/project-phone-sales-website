@@ -1,0 +1,56 @@
+﻿@model Smartphonev3.Models.ThanhToan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ThanhToan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.phuong_thuc_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phuong_thuc_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trang_thai_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trang_thai_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonHang.trang_thai_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.trang_thai_don_hang)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

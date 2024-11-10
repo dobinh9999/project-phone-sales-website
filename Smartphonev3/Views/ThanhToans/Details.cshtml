@@ -1,0 +1,50 @@
+﻿@model Smartphonev3.Models.ThanhToan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThanhToan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.phuong_thuc_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phuong_thuc_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trang_thai_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trang_thai_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonHang.trang_thai_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.trang_thai_don_hang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.thanh_toan_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

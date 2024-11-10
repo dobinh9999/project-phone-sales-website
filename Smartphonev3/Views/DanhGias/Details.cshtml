@@ -1,0 +1,58 @@
+﻿@model Smartphonev3.Models.DanhGia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DanhGia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.so_sao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_sao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.binh_luan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.binh_luan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao_danh_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao_danh_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.ten_dang_nhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.ten_san_pham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.ten_san_pham)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.danh_gia_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

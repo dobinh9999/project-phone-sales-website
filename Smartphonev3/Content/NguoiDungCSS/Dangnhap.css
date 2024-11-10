@@ -1,0 +1,177 @@
+﻿/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/Data/img/hinhnen.jpg'); /* Đặt hình nền từ thư mục img */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh auto;
+    flex-direction: column;
+}
+
+/* Thanh Navigation */
+nav {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Đặt màu nền trong suốt cho thanh nav */
+    position: fixed; /* Đặt position fixed để nav luôn ở trên cùng */
+    top: 0; /* Đặt vị trí trên cùng */
+    z-index: 1000; /* Đảm bảo thanh nav nằm trên các phần tử khác */
+}
+
+
+/* Điều chỉnh form đăng nhập nằm dưới thanh điều hướng */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 70px); /* Chiều cao còn lại sau khi trừ chiều cao thanh điều hướng */
+    padding-top: 70px; /* Đảm bảo form không bị che bởi nav */
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.7); /* Hộp có màu nền trắng và độ trong suốt */
+    padding: 50px;
+    border-radius: 15px; /* Bo tròn nhẹ cho hộp */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển đổi khi hover */
+    margin-block: 20px;
+}
+
+    /* Hiệu ứng khi di chuột vào form */
+    .login-box:hover {
+        transform: scale(1.05); /* Phóng to form lên một chút */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Tăng độ đổ bóng khi hover */
+    }
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.textbox {
+    position: relative; /* Đặt position relative để icon có thể được định vị tương đối với textbox */
+    display: flex; /* Căn giữa với flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+    .textbox input {
+        width: 100%; /* Giảm chiều rộng để phù hợp với biểu tượng */
+        padding: 10px 40px; /* Để lại không gian cho biểu tượng */
+        border: none;
+        border-radius: 25px;
+        background-color: #f1f1f1;
+        outline: none;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        max-width: 400px;
+    }
+
+    .textbox .icon {
+        position: absolute; /* Định vị icon một cách tuyệt đối */
+        top: 50%; /* Căn giữa theo chiều dọc */
+        left: 10px; /* Khoảng cách từ phía trái (có thể điều chỉnh theo ý muốn) */
+        transform: translateY(-50%); /* Điều chỉnh để căn giữa hoàn hảo */
+        font-size: 20px;
+        color: #666;
+    }
+
+    .textbox input:focus + .icon {
+        color: #007bff; /* Thay đổi màu biểu tượng khi ô nhập được chọn */
+    }
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+    .options a {
+        text-decoration: none;
+        color: #007bff; /* Màu cho liên kết */
+    }
+
+    .options label {
+        display: flex;
+        align-items: center;
+    }
+
+
+.btn-primary{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 25px; /* Viền bo tròn cho nút */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn:hover {
+        background-color: #218838;
+    }
+
+p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+    p a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        p a:hover {
+            text-decoration: underline;
+            
+
+.btn{
+    width: 100px; /* Độ rộng của nút */
+    padding: 10px; /* Khoảng cách bên trong của nút */
+    border: none; /* Loại bỏ viền */
+    background-color: #28a745; /* Màu nền ban đầu của nút */
+    color: #fff; /* Màu chữ trắng */
+    font-size: 16px; /* Cỡ chữ */
+    border-radius: 25px; /* Tạo viền bo tròn cho nút */
+    cursor: pointer; /* Thay đổi con trỏ chuột khi hover */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền khi hover */
+}
+
+.btn:hover {
+    background-color: #218838; /* Màu nền khi hover */
+}
+
+p {
+    margin-top: 10px; /* Khoảng cách trên giữa đoạn văn và các phần tử khác */
+    font-size: 14px; /* Cỡ chữ */
+}
+
+    p a {
+        color: #007bff; /* Màu liên kết */
+        text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+    }
+
+        p a:hover {
+            text-decoration: underline; /* Hiệu ứng gạch chân khi hover */
+        }
+
+

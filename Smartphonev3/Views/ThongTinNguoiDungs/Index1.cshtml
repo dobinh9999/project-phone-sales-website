@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Smartphonev3.Models.ThongTinNguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách người dùng</h2>
+
+<p>
+    
+        @Html.ActionLink("Create New", "Create")
+    
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_day_du)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dia_chi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.so_dien_thoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_sinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten_day_du)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dia_chi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.so_dien_thoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay_sinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDung.ten_dang_nhap)
+            </td>
+            <td>
+               
+                    @Html.ActionLink("Edit", "Edit", new { id = item.nguoi_dung_id })
+                    @Html.ActionLink("Details", "Details", new { id = item.nguoi_dung_id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.nguoi_dung_id })
+               
+            </td>
+        </tr>
+    }
+</table>

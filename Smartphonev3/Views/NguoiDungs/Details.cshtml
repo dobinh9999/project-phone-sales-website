@@ -1,0 +1,74 @@
+﻿@model Smartphonev3.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NguoiDung</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_dang_nhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_dang_nhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mat_khau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mat_khau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_sdt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vai_tro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vai_tro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_cap_nhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_cap_nhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThongTinNguoiDung.ten_day_du)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThongTinNguoiDung.ten_day_du)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.nguoi_dung_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

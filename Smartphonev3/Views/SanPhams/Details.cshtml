@@ -1,0 +1,104 @@
+﻿@model Smartphonev3.Models.SanPham
+@Html.AntiForgeryToken()
+<div class="product-details">
+    <h4>@Model.ten_san_pham</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Hiển thị hình ảnh sản phẩm -->
+            @if (!string.IsNullOrEmpty(Model.hinh_anh))
+            {
+                <img src="@Url.Content(Model.hinh_anh)" alt="Hình ảnh sản phẩm" class="img-fluid" style="max-height: 400px; object-fit: cover;" />
+            }
+            else
+            {
+                <span>Không có hình ảnh</span>
+            }
+        </div>
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Mô tả</dt>
+                <dd class="col-sm-8">@Model.mo_ta_san_pham</dd>
+
+                <dt class="col-sm-4">Giá</dt>
+                <dd class="col-sm-8">@Model.gia.ToString("N0") VND</dd>
+
+                <dt class="col-sm-4">Số lượng còn lại</dt>
+                <dd class="col-sm-8">@Model.so_luong</dd>
+            </dl>
+
+            <!-- Phần chọn số lượng sản phẩm -->
+            <div class="form-group">
+                <label for="quantity">Chọn số lượng:</label>
+                <input type="number" id="quantity" class="form-control" value="1" min="1" max="@Model.so_luong" onchange="updateTotalPrice()" />
+            </div>
+
+            <!-- Nút Thêm vào giỏ hàng và Mua hàng -->
+            <button type="button" class="btn btn-primary" onclick="addToCart(@Model.san_pham_id)">Thêm vào giỏ hàng</button>
+            <button type="button" class="btn btn-success" onclick="buyNow(@Model.san_pham_id)">Mua hàng</button>
+        </div>
+    </div>
+</div>
+
+<script>
+   
+    // Hàm thêm sản phẩm vào giỏ hàng
+    function addToCart(productId) {
+        const quantity = parseInt(document.getElementById("quantity").value);
+        const antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
+
+        $.ajax({
+            url: '/GioHangs/Create',
+            type: 'POST',
+            data: {
+                __RequestVerificationToken: antiForgeryToken,
+                san_pham_id: productId,
+                so_luong_san_pham: quantity
+            },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                } else if (response.requireLogin) {
+                    alert(response.message);
+                    window.location.href = '/NguoiDungs/Login';  // Chuyển hướng tới trang đăng nhập
+                } else {
+                    alert('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.');
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Lỗi kết nối với server.');
+            }
+        });
+    }
+   
+    function buyNow(productId) {
+        const quantity = parseInt(document.getElementById("quantity").value);
+        const antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
+
+        $.ajax({
+            url: '/GioHangs/Index',  // Đường dẫn tới phương thức Index của GioHangsController
+            type: 'POST',
+            data: {
+                __RequestVerificationToken: antiForgeryToken,
+                san_pham_id: [productId],  // Gửi sản phẩm mà người dùng chọn mua ngay
+                so_luong_san_pham: quantity     // Số lượng sản phẩm
+            },
+            success: function (response) {
+                if (response.requireLogin) {
+                    alert(response.message);  // Hiển thị thông báo yêu cầu đăng nhập
+                    window.location.href = '/NguoiDungs/Login';  // Chuyển hướng tới trang đăng nhập
+                }
+                else if (response.success) {
+                    alert(response.message);
+                    window.location.href = '/ThanhToans/Create';  // Chuyển hướng tới trang thanh toán
+                }
+                else {
+                    alert('Đã xảy ra lỗi khi mua sản phẩm.');
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Lỗi kết nối với server.');
+            }
+        });
+    }
+</script>

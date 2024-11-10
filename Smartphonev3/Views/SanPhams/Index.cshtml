@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Smartphonev3.Models.SanPham>
+
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+
+@{
+    var role = Session["Role"] as string;
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/SanphamCSS/hienthi.css" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+    /* Định dạng slideshow */
+    .slide-show {
+        position: relative;
+        width: 100%;
+        max-width: 1500px;
+        margin: auto;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+    }
+        .slide-show:hover {
+            transform: scale(1.02);
+        }
+
+        .list-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .list-images img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 5px solid #a1f3f1; /* Đổi màu và kích thước viền theo ý muốn */
+            border-radius: 10px; /* Tùy chọn: thêm bo tròn các góc nếu muốn */
+            transition: transform 0.3s ease; /* Tùy chọn: thêm hiệu ứng khi hover */
+        }
+
+            .list-images img:hover {
+                transform: scale(1.05); /* Tùy chọn: phóng to ảnh khi hover */
+            }
+
+    /* Định dạng nút điều hướng */
+    .btn-left, .btn-right {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+
+    .btn-left {
+        left: 10px;
+    }
+
+    .btn-right {
+        right: 10px;
+    }
+
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Định dạng chỉ mục dưới dạng chấm tròn */
+    .index-images {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .index-item {
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+        .index-item.active {
+            opacity: 1;
+            background-color: #ffcc00;
+        }
+
+</style>
+@if (role == "Admin")
+{
+    <!-- Chỉ hiển thị các nút này nếu là Admin -->
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+}
+    @* @{ Html.RenderPartial("~/Views/Shared/_layoutsildeshow.cshtml"); }*@
+    <div class="slide-show">
+        <div class="list-images">
+            <img src="@Url.Content("~/Data/img/anhslieshow3.jpg")" alt="Image 1" />
+            <img src="@Url.Content("~/Data/img/anhslieshow2.jpg")" alt="Image 2" />
+            <img src="@Url.Content("~/Data/img/anhslieshow4.jpg")" alt="Image 3" />
+            <img src="@Url.Content("~/Data/img/anhslieshow11.png")" alt="Image 4" />
+            <img src="@Url.Content("~/Data/img/anhslieshow8.png")" alt="Image 5" />
+        </div>
+
+        <div class="btn-left btn"><i class='bx bxs-chevron-left'></i></div>
+        <div class="btn-right btn"><i class='bx bxs-chevron-right'></i></div>
+
+        <div class="index-images">
+            <div class="index-item index-item-0 active"></div>
+            <div class="index-item index-item-1"></div>
+            <div class="index-item index-item-2"></div>
+            <div class="index-item index-item-3"></div>
+            <div class="index-item index-item-4"></div>
+        </div>
+    </div>
+
+    <!-- Link tới file JavaScript để điều khiển slideshow -->
+    <script src="@Url.Content("~/Scripts/js/jsSlideshow.js")"></script>
+
+    <div class="row">
+        <h2>Danh sách sản phẩm</h2>
+        
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4" onclick="window.location.href='@Url.Action("Details", "SanPhams", new { id = item.san_pham_id })';" style="cursor: pointer;">
+
+                    <div class="card mb-4 shadow-sm">
+                        <!-- Hiển thị hình ảnh sản phẩm -->
+                        @if (!string.IsNullOrEmpty(item.hinh_anh))
+                        {
+                            <img src="@Url.Content(item.hinh_anh)" class="card-img-top" alt="Hình ảnh sản phẩm" style="height: 200px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <img src="~/path-to-default-image.jpg" class="card-img-top" alt="Không có hình ảnh" style="height: 200px; object-fit: cover;" />
+                        }
+
+                        <!-- Hiển thị các thông tin sản phẩm -->
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.ten_san_pham)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.mo_ta_san_pham)</p>
+                            <p class="card-text"><strong>Giá: </strong>@Html.DisplayFor(modelItem => item.gia) VND</p>
+                            <p class="card-text"><strong>Số lượng: </strong>@Html.DisplayFor(modelItem => item.so_luong)</p>
+                            <p class="card-text"><strong>Danh mục: </strong>@Html.DisplayFor(modelItem => item.DanhMuc.ten_danh_muc)</p>
+                            <!-- Hiển thị số sao đánh giá -->
+                            <p class="card-text">
+                                <strong>Đánh giá : </strong>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= item.SoSaoTrungBinh)
+                                    {
+                                        <span class="text-warning">★</span> // Hiện sao vàng nếu đánh giá >= i
+                                    }
+                                    else
+                                    {
+                                        <span>☆</span>// Hiện sao trắng nếu đánh giá < i
+                                    }
+                                }
+                            </p>
+                            <!-- Các nút hành động: Edit, Details, Delete -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <!-- Nút "Edit", "Delete" chỉ hiển thị cho Admin -->
+                                    @if (role == "Admin")
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.san_pham_id }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.san_pham_id }, new { @class = "btn btn-sm btn-outline-danger" })
+                                    }
+
+                                    <!-- Nút "Details" hiển thị cho tất cả người dùng -->
+                                    @Html.ActionLink("Details", "Details", new { id = item.san_pham_id }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             }
+       
+        </div>

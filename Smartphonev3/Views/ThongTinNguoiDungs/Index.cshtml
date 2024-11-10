@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Smartphonev3.Models.ThongTinNguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Thông tin người dùng</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten_day_du)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dia_chi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.so_dien_thoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_sinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten_day_du)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dia_chi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.so_dien_thoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay_sinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDung.ten_dang_nhap)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.nguoi_dung_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.nguoi_dung_id })
+            </td>
+        </tr>
+    }
+</table>
+@if (!Model.Any(item => !string.IsNullOrEmpty(item.ten_day_du) ||
+                   !string.IsNullOrEmpty(item.dia_chi) ||
+                   !string.IsNullOrEmpty(item.so_dien_thoai) ||
+                   item.ngay_sinh != null))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}

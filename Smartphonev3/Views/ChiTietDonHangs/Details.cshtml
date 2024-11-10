@@ -1,0 +1,50 @@
+﻿@model Smartphonev3.Models.ChiTietDonHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietDonHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonHang.trang_thai_don_hang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonHang.trang_thai_don_hang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.ten_san_pham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.ten_san_pham)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.chi_tiet_don_hang_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

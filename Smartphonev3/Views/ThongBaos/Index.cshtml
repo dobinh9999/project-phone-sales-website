@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Smartphonev3.Models.ThongBao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.noi_dung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay_gui)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trang_thai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.ten_dang_nhap)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.noi_dung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngay_gui)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trang_thai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.ten_dang_nhap)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.thong_bao_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.thong_bao_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.thong_bao_id })
+        </td>
+    </tr>
+}
+
+</table>
